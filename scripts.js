@@ -177,53 +177,45 @@ Clona tu propio API: https://mockapi.io/clone/5d2cd8678c90070014972943
 */
 function getValue() {
 
-  myForm.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
   
     const inputs = {
-      "name": `
-        $(myForm.elements[0].value)
-      `,
-      "email": `
-        $(myForm.elements[1].value)
-      `,
-      "phone": `
-        $(myForm.elements[2].value)
-      `,
-      "city": `
-        $(myForm.elements[3].value)
-      `
+      "name": `$(form.elements[0].value)`,
+      "email": `$(form.elements[1].value)`,
+      "phone": `$(form.elements[2].value)`,
+      "city": `$(form.elements[3].value)`
     }
     
-    myForm.elements[0].value = '';
-    myForm.elements[1].value = '';
-    myForm.elements[2].value = '';
-    myForm.elements[3].value = '';
-    
-    addPeople();
+    form.elements[0].value = '';
+    form.elements[1].value = '';
+    form.elements[2].value = '';
+    form.elements[3].value = '';
+    addPeople(inputs);
   })
 
 }
 
 function addPeople(inputs) {
-
   fetch(`${apiUrl}/${add}`, {
     method: "POST",
+    body:  JSON.stringify(inputs),
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     },
-    body:   JSON.stringify()
   })
-  .then((response) => {
-    return response.json();}
-  )
+    .then((response) => {
+      return response.json();
+    })
+    then((data) => {
+      htmlListElement.innerHTML += createPeople(data)
+    })
+    alert("La persona ha sido agregada");
 }
 
 .catch((err) => {
   console.error(err);
 });
-
-
 
 //inputs
 if(form.input === " ") {
