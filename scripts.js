@@ -175,8 +175,6 @@ Clona tu propio API: https://mockapi.io/clone/5d2cd8678c90070014972943
     4.6. Limpiar el formulario
 
 */
-function getValue() {
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
   
@@ -194,7 +192,6 @@ function getValue() {
     addPeople(inputs);
   })
 
-}
 
 function addPeople(inputs) {
   fetch(`${apiUrl}/${add}`, {
@@ -212,10 +209,6 @@ function addPeople(inputs) {
     })
     alert("La persona ha sido agregada");
 }
-
-.catch((err) => {
-  console.error(err);
-});
 
 //inputs
 if(form.input === " ") {
