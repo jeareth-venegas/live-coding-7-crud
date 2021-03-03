@@ -175,3 +175,62 @@ Clona tu propio API: https://mockapi.io/clone/5d2cd8678c90070014972943
     4.6. Limpiar el formulario
 
 */
+function getValue() {
+
+  myForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    const inputs = {
+      "name": `
+        $(myForm.elements[0].value)
+      `,
+      "email": `
+        $(myForm.elements[1].value)
+      `,
+      "phone": `
+        $(myForm.elements[2].value)
+      `,
+      "city": `
+        $(myForm.elements[3].value)
+      `
+    }
+    
+    myForm.elements[0].value = '';
+    myForm.elements[1].value = '';
+    myForm.elements[2].value = '';
+    myForm.elements[3].value = '';
+    
+    addPeople();
+  })
+
+}
+
+function addPeople(inputs) {
+
+  fetch(`${apiUrl}/${add}`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body:   JSON.stringify()
+  })
+  .then((response) => {
+    return response.json();}
+  )
+}
+
+.catch((err) => {
+  console.error(err);
+});
+
+
+
+//inputs
+if(form.input === " ") {
+  alert("Por favor llene los espacios requeridos");
+} else {
+  alert("¡El formulario se ha enviado correctamente!");
+}
+
+if(form.type === "reset") {
+  form.style.display = "none";
